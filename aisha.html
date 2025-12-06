@@ -1,0 +1,1109 @@
+<!DOCTYPE html>  
+
+<html lang="ru">  
+
+<head>  
+
+  <meta charset="UTF-8" />  
+
+  <title>Flower For You</title>  
+
+  <style>  
+
+    body {
+
+
+
+      cursor: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48cGF0aCBkPSJNMTYgMkM4LjI2OCAyIDIgOC4yNjggMiAxNnM2LjI2OCAxNCAxNCAxNCAxNC02LjI2OCAxNC0xNFMyMy43MzIgMiAxNiAyem0wIDI2Yy02LjYyNyAwLTEyLTUuMzczLTEyLTEyUzkuMzczIDQgMTYgNHMxMiA1LjM3MyAxMiAxMi01LjM3MyAxMi0xMiAxMnptLTYtMTZoNHY4aDh2LTRoLTh2LTR6IiBmaWxsPSIjYjcwZDE3Ii8+PC9zdmc+'), auto;
+
+    }
+
+    
+
+    .filter-section {
+
+      text-align: center;
+
+      margin: 30px 0;
+
+      padding: 20px;
+
+    }
+
+
+
+    .filter-buttons {
+
+      display: flex;
+
+      justify-content: center;
+
+      gap: 15px;
+
+      margin-bottom: 25px;
+
+      flex-wrap: wrap;
+
+    }
+
+
+
+    .filter-btn {
+
+      background: #bf7e81;
+
+      color: white;
+
+      border: none;
+
+      padding: 10px 20px;
+
+      border-radius: 25px;
+
+      cursor: pointer;
+
+      transition: all 0.3s ease;
+
+      font-family: inherit;
+
+      font-size: 14px;
+
+    }
+
+
+
+    .filter-btn:hover {
+
+      background: #74040e;
+
+      transform: translateY(-2px);
+
+      box-shadow: 0 4px 8px rgba(116, 4, 14, 0.3);
+
+    }
+
+
+
+    .filter-btn.active {
+
+      background: #74040e;
+
+      box-shadow: 0 2px 4px rgba(116, 4, 14, 0.4);
+
+    }
+
+    .filter-item {
+
+      transition: all 0.5s ease;
+
+      opacity: 1;
+
+      transform: scale(1);
+
+    }
+
+
+
+    .filter-item.hidden {
+
+      opacity: 0;
+
+      transform: scale(0.8);
+
+      display: none;
+
+    }
+
+    nav a, 
+
+    .booking-form button, 
+
+    .filter-btn,
+
+    .top-btn {
+
+      cursor: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48cGF0aCBkPSJNMTMgMmg2djZoNnY2aC02djZoLTZ2LTZIN3YtNmg2VjJ6IiBmaWxsPSIjNzQwNDBlIi8+PC9zdmc+'), pointer;
+
+    }
+
+
+
+    input, select, textarea {
+
+      cursor: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48cGF0aCBkPSJNMTMgMjBoNnYtMTJoLTZ2MTJ6bTAgMTJoNnYtNmgtdjZ6IiBmaWxsPSIjYmY3ZTgxIi8+PC9zdmc+'), text;
+
+    }
+
+
+
+    .gallery img, 
+
+    .my-image-card {
+
+      cursor: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48cGF0aCBkPSJNMTYgNEM5IDQgNyAxNiA3IDE2czIgMTIgOSAxMiA5LTEyIDktMTJTMjMgNCAxNiA0eiIgZmlsbD0iI2JmN2U4MSIgc3Ryb2tlPSIjNzQwNDBlIiBzdHJva2Utd2lkdGg9IjIiLz48L3N2Zz4='), zoom-in;
+
+    }
+
+    body {  
+
+      background: linear-gradient(#fff5f7, #fbeaec);  
+
+      margin: 0;  
+
+      font-family: "Times New Roman", Times, serif;  
+
+    }  
+
+
+
+    .lined {  
+
+      position: relative;  
+
+      padding: 12px 0;  
+
+      color: inherit;  
+
+    }  
+
+
+
+    .lined::before,  
+
+    .lined::after {  
+
+      content: "";  
+
+      position: absolute;  
+
+      left: 50%;  
+
+      transform: translateX(-50%);  
+
+      height: 2px;       
+
+      width: 70%;   
+
+      background: #74040e;  
+
+    }  
+
+
+
+    .lined::before { top: 0; }  
+
+    .lined::after { bottom: 0; }  
+
+
+
+    header {  
+
+      background-color: #bf7e81;  
+
+      padding-bottom: 25px;  
+
+      color: #ffe4e1;  
+
+      border-bottom: 3px solid rgba(116,4,14,0.12);  
+
+    }  
+
+
+
+    header h2 {  
+
+      text-align: center;  
+
+      margin: 0;  
+
+      font-size: 28px;  
+
+    }  
+
+
+
+    nav {  
+
+      margin-top: 15px;  
+
+      text-align: center;  
+
+    }  
+
+
+
+    nav a {  
+
+      color: #ffe4e1;  
+
+      text-decoration: none;  
+
+      margin: 0 15px;  
+
+      font-size: 18px;  
+
+      font-weight: bold;  
+
+      transition: color 0.3s;  
+
+      font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;  
+
+      padding-bottom: 6px;  
+
+    }  
+
+
+
+    nav a:hover {  
+
+      color: #74040e;  
+
+    }  
+
+
+
+    section {  
+
+      text-align: center;  
+
+      padding: 30px;  
+
+      color: #74040e;  
+
+    }  
+
+
+
+    footer {  
+
+      text-align: center;  
+
+      font-size: 14px;  
+
+      padding: 15px 0;  
+
+      border-top: 1px solid #bf7e81;  
+
+      color: #bf7e81;  
+
+    }  
+
+
+
+    .top-btn {  
+
+      position: fixed;  
+
+      bottom: 20px;  
+
+      right: 20px;  
+
+      background: #bf7e81;  
+
+      color: white;  
+
+      padding: 10px 15px;  
+
+      border-radius: 50%;  
+
+      text-decoration: none;  
+
+      font-size: 18px;  
+
+    }  
+
+
+
+    .booking-form {  
+
+      background-color: #fff;  
+
+      border: 1px solid #bf7e81;  
+
+      border-radius: 12px;  
+
+      box-shadow: 0 4px 10px rgba(191, 126, 129, 0.2);  
+
+      width: 320px;  
+
+      margin: 0 auto 40px;  
+
+      padding: 20px;  
+
+      text-align: left;  
+
+    }  
+
+
+
+    .booking-form h3 {  
+
+      text-align: center;  
+
+      color: #bf7e81;  
+
+      margin: 0 0 12px;  
+
+    }  
+
+
+
+    .booking-form label {  
+
+      display: block;  
+
+      margin-bottom: 5px;  
+
+      font-weight: bold;  
+
+      color: #74040e;  
+
+    }  
+
+
+
+    .booking-form input,  
+
+    .booking-form select,  
+
+    .booking-form textarea {  
+
+      width: 100%;  
+
+      padding: 8px;  
+
+      margin-bottom: 12px;  
+
+      border: 1px solid #bf7e81;  
+
+      border-radius: 6px;  
+
+      font-family: inherit;  
+
+    }  
+
+
+
+    .booking-form button {  
+
+      background-color: #bf7e81;  
+
+      color: white;  
+
+      border: none;  
+
+      padding: 10px;  
+
+      width: 100%;  
+
+      border-radius: 8px;  
+
+      font-size: 16px;  
+
+      cursor: pointer;  
+
+      transition: 0.3s;  
+
+    }  
+
+
+
+    .booking-form button:hover {  
+
+      background-color: #74040e;  
+
+    }  
+
+
+
+    .my-image-section {  
+
+      display: flex;  
+
+      flex-wrap: wrap;  
+
+      gap: 20px;  
+
+      justify-content: center;  
+
+      margin-bottom: 40px;  
+
+    }  
+
+
+
+    .my-image-card {  
+
+      background-color: #fff;  
+
+      border-radius: 10px;  
+
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);  
+
+      padding: 10px;  
+
+      width: 220px;  
+
+      text-align: center;  
+
+      transition: transform 0.2s;  
+
+    }  
+
+
+
+    .my-image-card:hover {  
+
+      transform: scale(1.03);  
+
+    }  
+
+
+
+    .my-image-card img {  
+
+      width: 100%;  
+
+      height: auto;  
+
+      border-radius: 8px;  
+
+    }  
+
+
+
+    .my-image-card h3 {  
+
+      font-size: 16px;  
+
+      margin: 10px 0 0;  
+
+    }  
+
+
+
+    .video-block {  
+
+      text-align: center;  
+
+      margin: 40px 0;  
+
+    }  
+
+
+
+    .video-block iframe {  
+
+      width: 80%;  
+
+      max-width: 700px;  
+
+      height: 400px;  
+
+      border-radius: 12px;  
+
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);  
+
+      border: none;  
+
+    }  
+
+
+
+    .gallery {  
+
+      display: grid;  
+
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));  
+
+      gap: 15px;  
+
+    }  
+
+
+
+    .gallery img {  
+
+      width: 100%;  
+
+      height: auto;  
+
+      border-radius: 10px;  
+
+      transition: transform 0.3s;  
+
+    }  
+
+
+
+    .gallery img:hover {  
+
+      transform: scale(1.05);  
+
+    }  
+
+
+
+    .lined.address {  
+
+      padding: 18px 0;  
+
+    }  
+
+
+
+    .lined.address::before,  
+
+    .lined.address::after {  
+
+      width: 85%;  
+
+      height: 2px;  
+
+      background: #bf7e81;  
+
+    }  
+
+
+
+    .map-wrapper {  
+
+      text-align: center;  
+
+      margin: 40px 0;  
+
+    }  
+
+
+
+    #top { display: block; }  
+
+  </style>  
+
+</head>  
+
+<body>  
+
+  <div id="top"></div>  
+
+
+
+  <header>  
+
+    <h2 class="lined"><i>Flower For You</i></h2>  
+
+    <nav>  
+
+      <a>Главная</a>  
+
+      <a href="onas.html" target="_blank">О нас</a>  
+
+      <a href="menu.html" target="_blank">Меню</a>  
+
+      <a href="povod.html" target="_blank">Повод</a>  
+
+    </nav>  
+
+  </header>  
+
+  <div class="filter-section">
+
+    <h3 class="lined">Фильтр букетов</h3>
+
+    <div class="filter-buttons">
+
+      <button class="filter-btn active" data-filter="all">Все букеты</button>
+
+      <button class="filter-btn" data-filter="roses">Розы</button>
+
+      <button class="filter-btn" data-filter="seasonal">Сезонные</button>
+
+      <button class="filter-btn" data-filter="luxury">Роскошные</button>
+
+    </div>
+
+  </div>
+
+
+
+  <section id="contact">  
+
+    <h3 class="lined">Связаться с нами</h3>  
+
+    <h3>+7 747 333 57 48</h3>  
+
+  </section>  
+
+
+
+  <section id="booking">  
+
+    <div class="booking-form">  
+
+      <h3 class="lined">Забронировать букет</h3>  
+
+      <form action="#" method="post">  
+
+        <label for="name">Имя:</label>  
+
+        <input type="text" id="name" name="name" placeholder="Введите имя" required />  
+
+
+
+        <label for="phone">Телефон:</label>  
+
+        <input type="tel" id="phone" name="phone" placeholder="+7..." required />  
+
+
+
+        <label for="date">Дата получения:</label>  
+
+        <input type="date" id="date" name="date" required />  
+
+
+
+        <label for="bouquet">Выберите букет:</label>  
+
+        <select id="bouquet" name="bouquet" required>  
+
+          <option value="">-- Выберите --</option>  
+
+          <option>Роскошные диантусы</option>  
+
+          <option>Пионовидные розы</option>  
+
+          <option>Осенний букет</option>  
+
+          <option>Кустовые розы</option>  
+
+        </select>  
+
+
+
+        <label for="note">Комментарий:</label>  
+
+        <textarea id="note" name="note" rows="3" placeholder="Например: доставка утром"></textarea>  
+
+
+
+        <button type="submit">Отправить заявку</button>  
+
+      </form>  
+
+    </div>  
+
+  </section>  
+
+
+
+  <section>  
+
+    <h3 class="lined">Видео о наших букетах</h3>  
+
+    <div class="video-block">  
+
+      <iframe  
+
+        src="https://www.youtube.com/embed/BTFJQqiE1Dw?autoplay=1&mute=1&loop=1&playlist=BTFJQqiE1Dw"  
+
+        title="Видео о наших букетах"  
+
+        frameborder="0"  
+
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; Picture-in-Picture"  
+
+        allowfullscreen  
+
+      ></iframe>  
+
+    </div>  
+
+  </section>  
+
+
+
+  <div class="my-image-section">  
+
+    <div class="my-image-card filter-item" data-category="luxury">  
+
+      <img src="https://i.pinimg.com/1200x/53/59/c2/5359c2d01487d3ead7474240d07b0c1e.jpg" alt="Диантусы" />  
+
+      <h3>Роскошные диантусы</h3>  
+
+    </div>  
+
+    <div class="my-image-card filter-item" data-category="roses luxury">  
+
+      <img src="https://i.pinimg.com/736x/54/eb/6b/54eb6b7e93dc9e95a4bebda01b8534a3.jpg" alt="Пионовидные розы" />  
+
+      <h3>Пионовидные розы</h3>  
+
+    </div>  
+
+    <div class="my-image-card filter-item" data-category="seasonal">  
+
+      <img src="https://i.pinimg.com/736x/bb/b6/a4/bbb6a41ac00c4e895059557af4c74630.jpg" alt="Осенний букет" />  
+
+      <h3>Осенний букет</h3>  
+
+    </div>  
+
+    <div class="my-image-card filter-item" data-category="roses">  
+
+      <img src="https://i.pinimg.com/736x/53/99/9f/53999f74c863b5b51e4ef4ed0de26226.jpg" alt="Кустовые розы" />  
+
+      <h3>Кустовые розы</h3>  
+
+    </div>  
+
+  </div>  
+
+
+
+  <div class="map-wrapper">  
+
+    <h3 class="lined address">Наш адрес</h3>  
+
+    <iframe  
+
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2899.456527368483!2d76.92623037676864!3d43.25667287913743!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38836eb2a91b9b55%3A0x576c52dfb77e55b8!2sAlmaty!5e0!3m2!1sru!2skz!4v1694345300000!5m2!1sru!2skz"  
+
+      width="600"  
+
+      height="450"  
+
+      style="border: 0; border-radius: 10px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);"  
+
+      allowfullscreen=""  
+
+      loading="lazy"  
+
+      referrerpolicy="no-referrer-when-downgrade"  
+
+    ></iframe>  
+
+  </div>  
+
+  <section>  
+
+    <h3 class="lined">Галерея</h3>  
+
+    <div class="gallery">  
+
+      <img src="https://i.pinimg.com/736x/5f/b1/7d/5fb17d907849803ec91b4150d55d216e.jpg" alt="букет 1">  
+
+      <img src="https://i.pinimg.com/736x/08/51/9b/08519b05457f1341a6facebe857f87f3.jpg" alt="букет 2">  
+
+      <img src="https://i.pinimg.com/736x/30/c7/7d/30c77da692ade9aa2a2ac14d06aabcbb.jpg" alt="букет 3">  
+
+    </div>  
+
+  </section>  
+
+
+
+  <a href="#top" class="top-btn">Наверх</a>  
+
+  <footer>© Flower For You, 2025</footer>  
+
+
+
+  <script>
+
+    document.addEventListener('DOMContentLoaded', function() {
+
+      const filterButtons = document.querySelectorAll('.filter-btn');
+
+      const filterItems = document.querySelectorAll('.filter-item');
+
+      
+
+      filterButtons.forEach(button => {
+
+        button.addEventListener('click', function() {
+
+          filterButtons.forEach(btn => btn.classList.remove('active'));
+
+          this.classList.add('active');
+
+          
+
+          const filterValue = this.getAttribute('data-filter');
+
+          
+
+          filterItems.forEach(item => {
+
+            if (filterValue === 'all') {
+
+              item.classList.remove('hidden');
+
+            } else {
+
+              if (item.getAttribute('data-category').includes(filterValue)) {
+
+                item.classList.remove('hidden');
+
+              } else {
+
+                item.classList.add('hidden');
+
+              }
+
+            }
+
+          });
+
+        });
+
+      });
+
+    });
+
+  </script>
+
+<script>
+
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+
+  link.addEventListener('click', function(e) {
+
+    e.preventDefault();
+
+    const target = document.querySelector(this.getAttribute('href'));
+
+    if (target) {
+
+      window.scrollTo({
+
+        top: target.offsetTop,
+
+        behavior: "smooth"
+
+      });
+
+    }
+
+  });
+
+});
+
+
+
+const revealElements = document.querySelectorAll(
+
+  "section, .my-image-section, .gallery, .video-block, .map-wrapper"
+
+);
+
+
+
+function revealOnScroll() {
+
+  let windowHeight = window.innerHeight;
+
+
+
+  revealElements.forEach(el => {
+
+    let revealTop = el.getBoundingClientRect().top;
+
+    if (revealTop < windowHeight - 120) {
+
+      el.classList.add("show");
+
+    }
+
+  });
+
+
+
+  document.querySelectorAll(".my-image-card").forEach(card => {
+
+    let revealTop = card.getBoundingClientRect().top;
+
+    if (revealTop < windowHeight - 120) {
+
+      card.classList.add("visible");
+
+    }
+
+  });
+
+}
+
+
+
+window.addEventListener("scroll", revealOnScroll);
+
+window.addEventListener("load", revealOnScroll);
+
+</script>
+
+<style>
+
+section, .my-image-section, .gallery, .video-block, .map-wrapper {
+
+  opacity: 0;
+
+  transform: translateY(30px);
+
+  transition: all 1s ease;
+
+}
+
+
+
+.show {
+
+  opacity: 1;
+
+  transform: translateY(0);
+
+}
+
+.filter-btn:hover,
+
+.booking-form button:hover,
+
+.top-btn:hover {
+
+  animation: pulse 0.4s ease-out;
+
+}
+
+
+
+@keyframes pulse {
+
+  0% { transform: scale(1); }
+
+  60% { transform: scale(1.08); }
+
+  100% { transform: scale(1); }
+
+}
+
+
+
+.my-image-card {
+
+  opacity: 0;
+
+  transform: scale(0.8);
+
+  transition: all 0.8s ease;
+
+}
+
+
+
+.my-image-card.visible {
+
+  opacity: 1;
+
+  transform: scale(1);
+
+}
+
+
+
+.gallery img:hover {
+
+  transform: scale(1.1) rotate(1deg);
+
+  transition: .4s ease;
+
+}
+
+
+
+</style>
+
+<!-- Цветочный курсор -->
+
+<div id="flower-cursor">
+
+  <svg width="40" height="40" viewBox="0 0 100 100">
+
+    <g transform="translate(50,50)">
+
+      <ellipse cx="0" cy="-25" rx="12" ry="24" fill="#ff7ab6"/>
+
+      <ellipse cx="0" cy="-25" rx="12" ry="24" fill="#ffd17a" transform="rotate(45)"/>
+
+      <ellipse cx="0" cy="-25" rx="12" ry="24" fill="#ff7ab6" transform="rotate(90)"/>
+
+      <ellipse cx="0" cy="-25" rx="12" ry="24" fill="#ffd17a" transform="rotate(135)"/>
+
+    </g>
+
+    <circle cx="50" cy="50" r="11" fill="#fff3c4"/>
+
+  </svg>
+
+</div>
+
+
+
+<style>
+
+  /* Полное отключение стандартного курсора */
+
+  * {
+
+    cursor: none !important;
+
+  }
+
+
+
+  #flower-cursor {
+
+    position: fixed;
+
+    width: 40px;
+
+    height: 40px;
+
+    pointer-events: none;
+
+    top: 0;
+
+    left: 0;
+
+    transform: translate(-50%, -50%);
+
+    transition: transform 0.08s linear;
+
+    z-index: 9999;
+
+  }
+
+</style>
+
+
+
+<script>
+
+  const flower = document.getElementById("flower-cursor");
+
+
+
+  document.addEventListener("mousemove", (e) => {
+
+    flower.style.left = e.clientX + "px";
+
+    flower.style.top = e.clientY + "px";
+
+  });
+
+</script>
+
+
+
+
+
+</body>  
+
+</html>
